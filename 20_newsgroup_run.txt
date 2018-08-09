@@ -1,3 +1,7 @@
-python construct_20news.py -train './20_newsgroup/train' -test './20_newsgroup/test' -o './20_newsgroup/output'
-python train.py -i ./20_newsgroup/output/train.corpus  -nv 700 --noise gs  -ctype kcomp -sm ./20_newsgroup/model/m_2000
-python run_classifier.py ./20_newsgroup/model/training_2000.txt mixmodel/classf_train/test.labels mixmodel/test_2000.txt mixmodel/classf_test/test.labels -nv 2000 -cv 10
+python construct_20news.py -train ./20_newsgroup/train -test ./20_newsgroup/test -o ./20_newsgroup/output
+python train.py -i ./20_newsgroup/output/train.corpus  -nv 700 --noise gs  -ctype kcomp -sm ./20_newsgroup/model/m_128
+
+python pred.py -i ./20_newsgroup/output/test.corpus  -lm ./20_newsgroup/model/m_128  -o ./20_newsgroup/model/test_codes_128
+python pred.py -i ./20_newsgroup/output/train.corpus  -lm ./20_newsgroup/model/m_128  -o ./20_newsgroup/model/train_codes_128
+
+python run_classifier.py ./20_newsgroup/model/train_codes_128 ./20_newsgroup/output/train.labels ./20_newsgroup/model/test_codes_128 ./20_newsgroup/output/test.labels -nv 1000 -cv 10
