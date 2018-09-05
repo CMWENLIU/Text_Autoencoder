@@ -1,5 +1,6 @@
+
 python construct_20news.py -train ./20_newsgroup/train -test ./20_newsgroup/test -o ./20_newsgroup/output
-python train.py -i ./20_newsgroup/output/train.corpus  -nv 700 --noise gs  -ctype kcomp -sm ./20_newsgroup/model/m_128
+python train.py -i ./20_newsgroup/output/train.corpus -ne 100 -nv 1000 -ck 32  -ctype kcomp -sm ./20_newsgroup/model/m_128
 
 python pred.py -i ./20_newsgroup/output/test.corpus  -lm ./20_newsgroup/model/m_128  -o ./20_newsgroup/model/test_codes_128
 python pred.py -i ./20_newsgroup/output/train.corpus  -lm ./20_newsgroup/model/m_128  -o ./20_newsgroup/model/train_codes_128
