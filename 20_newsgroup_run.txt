@@ -1,3 +1,12 @@
+python construct_data.py -train ./data/train -test ./data/test -o ./data/output
+python train.py -i ./data/output/train.corpus -ne 100 -nv 1000 -ck 32  -ctype kcomp -sm ./data/model/m_128
+
+python pred.py -i ./data/output/test.corpus  -lm ./data/model/m_128  -o ./data/model/test_codes_128
+python pred.py -i ./data/output/train.corpus  -lm ./data/model/m_128  -o ./data/model/train_codes_128
+
+python run_classifier.py ./data/model/train_codes_128 ./data/output/train.labels ./data/model/test_codes_128 ./data/output/test.labels -nv 1000 -cv 10
+
+
 
 python construct_20news.py -train ./20_newsgroup/train -test ./20_newsgroup/test -o ./20_newsgroup/output
 python train.py -i ./20_newsgroup/output/train.corpus -ne 100 -nv 1000 -ck 32  -ctype kcomp -sm ./20_newsgroup/model/m_128
