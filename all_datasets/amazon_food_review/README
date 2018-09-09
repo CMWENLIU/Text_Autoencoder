@@ -1,0 +1,8 @@
+
+Download amazon food reviews from Kaggle:
+Filter by:
+df[Score] == 5 and df[HelpfulnessNumerator] > 4 for positive reviews
+get 29,423 positive reviews
+
+Filter by df['Score'] <= 2 and df['HelpfulnessNumerator'] > 1 for negtive reviews
+git 29,187 negtive reviews
